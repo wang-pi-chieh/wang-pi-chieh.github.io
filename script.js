@@ -37,7 +37,7 @@ function renderProjects(filter='all'){document.querySelectorAll('[data-projects]
 renderProjects();document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));renderProjects(button.dataset.filter);}));
 if($('#article-content')){const params=new URLSearchParams(location.search);const type=params.get('type');const id=params.get('id');const index=id!==null&&/^\d+$/.test(id)?Number(id):-1;const item=['blogs','notes','projects'].includes(type)?portfolio[type]?.[index]:null;
  if(!item){$('#article-content').innerHTML='<div class="empty-state"><p class="eyebrow">NOT FOUND</p><h1>找不到這篇內容</h1><p>這個連結可能已經變更，回列表繼續探索吧。</p><a class="button" href="index.html">回到 Home →</a></div>';document.title='找不到內容 · PiChieh';}
- else{const back={blogs:['blog.html','Blog'],notes:['note.html','Note'],projects:['project.html','Project']}[type];document.querySelectorAll('#navigation a').forEach(a=>{if(a.getAttribute('href')===back[0])a.setAttribute('aria-current','page');});document.title=`${item.title} · PiChieh`;$('#article-content').innerHTML=`<a class="plain-link back-link" href="${back[0]}">← 回到 ${back[1]}</a><header class="article-heading"><p class="eyebrow">${esc(item.topic||item.label)}</p><h1>${esc(item.title)}</h1><p class="entry-meta">王碧婕 <span>／ ${esc(item.date||'專案紀錄')}</span></p></header>${item.sourceUrl?`<p class="article-source"><a href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">HackMD 原文 ↗</a></p>`:''}<div class="article-body">${item.body}</div><div class="article-end"><span>✦</span><p>謝謝閱讀，一起繼續探索。</p><a class="plain-link" href="${back[0]}">更多 ${back[1]} →</a></div>`;}
+ else{const back={blogs:['blog.html','Blog'],notes:['note.html','Note'],projects:['project.html','Project']}[type];document.querySelectorAll('#navigation a').forEach(a=>{if(a.getAttribute('href')===back[0])a.setAttribute('aria-current','page');});document.title=`${item.title} · PiChieh`;$('#article-content').innerHTML=`<a class="plain-link back-link" href="${back[0]}">← 回到 ${back[1]}</a><header class="article-heading"><p class="eyebrow">${esc(item.topic||item.label)}</p><h1>${esc(item.title)}</h1>${type==='notes'?'':`<p class="entry-meta">王碧婕 <span>／ ${esc(item.date||'專案紀錄')}</span></p>`}</header><div class="article-body">${item.body}</div><div class="article-end"><span>✦</span><p>謝謝閱讀，一起繼續探索。</p><a class="plain-link" href="${back[0]}">更多 ${back[1]} →</a></div>`;}
 }
 
 
@@ -51,7 +51,7 @@ if (document.body.dataset.page === 'article' && new URLSearchParams(location.sea
     const reading = document.createElement('article'); reading.className = 'article-reading';
     while (container.firstChild) reading.append(container.firstChild);
     const aside = document.createElement('aside'); aside.className = 'article-toc';
-    aside.innerHTML = '<details class="toc-details"><summary>目錄 <span>On this page</span></summary><nav class="toc-nav" aria-label="筆記目錄"><ul></ul></nav></details>';
+    aside.innerHTML = '<details class="toc-details"><summary>目錄</summary><nav class="toc-nav" aria-label="筆記目錄"><ul></ul></nav></details>';
     const details = aside.querySelector('details');
     const desktop = matchMedia('(min-width: 901px)');
     details.open = desktop.matches;

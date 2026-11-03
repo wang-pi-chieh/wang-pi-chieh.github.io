@@ -1,25 +1,28 @@
-# 個人履歷／作品集網站
+# 王碧婕的數位花園
 
-輕量靜態網站，可直接使用 GitHub Pages，無須安裝套件。
+原生 HTML / CSS / JavaScript，多頁靜態網站，可直接部署至 GitHub Pages。
 
-## 發布
+## 頁面
 
-1. 個人首頁的 repo 建議命名為 `wang-pi-chieh.github.io`（需與 GitHub 帳號完全一致）。
-2. 上傳 `index.html`、`styles.css`、`content.js`、`script.js` 和 `.nojekyll` 至 repo 最外層。
-3. Settings → Pages → Deploy from a branch → main → / (root) → Save。
-4. 從 Actions 確認部署完成，回 Pages 查看實際網址。
+- `index.html`：Home，個人簡介、社群連結、近期筆記與作品。
+- `blog.html`：Blog，生活隨筆、競賽心得與成長紀錄。目前沒有真實文章，因此顯示待更新狀態。
+- `note.html`：Note，可搜尋的自學筆記與主題快速搜尋。
+- `project.html`：Project，可分類的作品列表。
+- `about.html`：About，個人介紹、競賽與經歷、聯絡資訊。
+- `article.html?type=notes&id=0`：文章閱讀頁，支援 `notes`、`blogs`、`projects`。
 
-## 修改內容
+## 編輯內容
 
-- `index.html`：姓名、關於我、競賽經歷、GitHub 聯絡連結及網站描述。
-- `content.js`：作品與筆記。複製陣列中的項目即可新增；`category` 可填 `web` 或 `learning`。`body` 是你自己撰寫的可信任 HTML，請勿直接放入外部未驗證內容。
-- `styles.css`：顏色、字型與響應式排版。
-- `script.js`：分類、閱讀視窗與行動版選單。
+- `site.config.js`：GitHub、LinkedIn、Gmail、Instagram。Gmail 只填信箱；其他填完整 HTTPS 網址。
+- `content.js`：`blogs`、`notes`、`projects` 三個陣列。新增項目放在陣列尾端，避免原有文章索引網址變動。文章的 `body` 是自行撰寫的可信任 HTML，不要載入外部未驗證內容。
+- `build_pages.py`：五頁與文章頁的共用結構及固定介紹。修改後執行 `python build_pages.py` 重新產生 HTML，並一併上傳生成檔案。訪客與 GitHub Pages 都不需要執行 Python。
+- `styles.css`：響應式樣式與亮／深色配色。
+- `theme.js`：首次依作業系統配色，手動切換後以 localStorage 記住選擇。無法存取儲存空間時，仍能在當頁切換。
 
-網站姓名為「王碧婕」。網站沒有虛構競賽名次、實習單位或學歷；第二個作品與兩篇筆記皆為清楚標示的示範內容。替換後可自行移除示範標示。
+目前第二個作品及兩篇筆記為明確標示的示範內容。姓名為王碧婕，未虛構學歷、競賽名次或實習單位。
 
-Google Fonts 無法連線時會使用系統備用字型。網站不需後端，不包含聯絡表單或訪客資料蒐集。
+## 預覽與發布
 
-## 本機預覽
+在這個資料夾執行 `python -m http.server 8768 --bind 127.0.0.1`，開啟 http://127.0.0.1:8768 。
 
-在此資料夾執行 `python -m http.server 8000`，再開啟 http://localhost:8000 。
+將 HTML、CSS、JS、favicon.svg 與 .nojekyll 上傳到 repository 最外層；Pages 使用 main / (root)。不需要 npm 或 build。Google Fonts 無法載入時會使用系統備用字型。

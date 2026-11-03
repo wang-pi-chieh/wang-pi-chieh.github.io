@@ -66,6 +66,18 @@ if (document.body.dataset.page === 'article' && new URLSearchParams(location.sea
     });
     layout.append(aside, reading); container.append(layout);
     let scheduled = false;
+    let previousActive = -1;
+    function syncTocPosition(active) {
+      if (!desktop.matches || !details.open) return;
+      const link = links[active];
+      const box = aside.getBoundingClientRect();
+      const item = link.getBoundingClientRect();
+      const titleHeight = aside.querySelector('summary').getBoundingClientRect().height;
+      const available = aside.clientHeight - titleHeight;
+      // Move only the TOC scroll container; never scroll the article itself.
+      const target = aside.scrollTop + item.top - box.top - titleHeight - available * 0.35;
+      aside.scrollTo({top: Math.max(0, Math.min(target, aside.scrollHeight - aside.clientHeight)), behavior: 'instant'});
+    }
     function updateActive() {
       let active = 0;
       headings.forEach((heading, index) => { if (heading.getBoundingClientRect().top <= 170) active = index; });
@@ -73,8 +85,14 @@ if (document.body.dataset.page === 'article' && new URLSearchParams(location.sea
         if (index === active) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       });
+      if (active !== previousActive) {
+        syncTocPosition(active);
+        previousActive = active;
+      }
       scheduled = false;
     }
+    details.addEventListener('toggle', () => { if (details.open) syncTocPosition(Math.max(0, previousActive)); });
+    window.addEventListener('resize', () => syncTocPosition(Math.max(0, previousActive)));
     window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateActive); } }, {passive:true});
     updateActive();
     if (/^#section-\d+$/.test(location.hash)) {

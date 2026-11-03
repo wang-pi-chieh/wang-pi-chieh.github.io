@@ -24,3 +24,6 @@
 
 /* Keep the TOC scrollable without a visible scrollbar. */
 .article-toc,.toc-nav{scrollbar-width:none;-ms-overflow-style:none}.article-toc::-webkit-scrollbar,.toc-nav::-webkit-scrollbar{display:none;width:0;height:0}
+/* Compact note title spacing and keep the TOC label visible while it follows. */
+.with-toc .article-heading{padding-bottom:12px}.with-toc .article-heading h1{margin-bottom:0}.with-toc .article-body{padding-top:18px}.with-toc .article-body>:first-child{margin-top:0}.article-toc .toc-details>summary{position:sticky;top:0;background:var(--bg);z-index:1}
+@media(max-width:900px){.article-toc .toc-details>summary{position:static;background:transparent}}

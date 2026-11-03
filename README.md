@@ -26,3 +26,13 @@
 在這個資料夾執行 `python -m http.server 8768 --bind 127.0.0.1`，開啟 http://127.0.0.1:8768 。
 
 將 HTML、CSS、JS、favicon.svg 與 .nojekyll 上傳到 repository 最外層；Pages 使用 main / (root)。不需要 npm 或 build。Google Fonts 無法載入時會使用系統備用字型。
+## Illustration asset
+
+`assets/pichieh-girl.png` was generated with the built-in ImageGen tool, then copied into this project. It is reused on Home and About.
+
+Final prompt:
+Use case: illustration-story. Create one polished website mascot asset: a cute little girl with straight dark navy shoulder-length hair and bangs, smiling softly, sitting cross-legged with a small open laptop on her lap. Full body, three-quarter front view, friendly editorial illustration, clean hand-drawn rounded lines, soft flat shaded shapes, tasteful details, not a logo, not an emoji. Oversized light sky blue sweatshirt #C0E0FF, dark navy #000033 shorts or trousers and hair, warm peach skin, white socks. Character should occupy 85% of a square canvas, isolated on a genuinely transparent background, no border, no lettering, no flowers, no plants, no garden motifs, no ground scenery. Clear silhouette legible at 180px, attractive on both white and midnight navy website backgrounds. Laptop screen faces her with back of laptop visible, no text or brand marks. Both hands naturally resting at keyboard. Single character only.
+
+## Footer pages
+
+`privacy.html` describes local theme storage, hosting, fonts and external links. `terms.html` describes content sharing and attribution. Edit them through `build_pages.py` if site behavior changes.

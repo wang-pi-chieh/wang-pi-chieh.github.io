@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parent
 NAV = [('home', 'Home', 'index.html'), ('blog', 'Blog', 'blog.html'), ('note', 'Note', 'note.html'), ('project', 'Project', 'project.html'), ('about', 'About', 'about.html')]
 
 def shell(page, title, body):
-    asset_version = sha256((ROOT / 'styles.css').read_bytes() + (ROOT / 'script.js').read_bytes()).hexdigest()[:10]
+    asset_version = sha256((ROOT / 'styles.css').read_bytes() + (ROOT / 'script.js').read_bytes() + (ROOT / 'content.js').read_bytes()).hexdigest()[:10]
     nav = ''.join(f'<a href="{url}"'+(' aria-current="page"' if key == page else '')+f'>{label}</a>' for key, label, url in NAV)
     return f'''<!doctype html>
 <html lang="zh-Hant"><head>
@@ -14,7 +14,7 @@ def shell(page, title, body):
 <meta name="description" content="王碧婕的個人網站：專案作品、自學筆記、生活隨筆與競賽紀錄。">
 <meta name="theme-color" content="#f5faff"><title>{title} · PiChieh</title>
 <script src="theme.js"></script><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css?v={asset_version}">
-<script src="site.config.js" defer></script><script src="content.js" defer></script><script src="script.js?v={asset_version}" defer></script>
+<script src="site.config.js" defer></script><script src="content.js?v={asset_version}" defer></script><script src="script.js?v={asset_version}" defer></script>
 </head><body data-page="{page}">
 <a class="skip" href="#main">跳至主要內容</a>
 <header class="site-header"><div class="header-inner"><a class="wordmark" href="index.html" aria-label="PiChieh，首頁"><span>PiChieh</span></a>

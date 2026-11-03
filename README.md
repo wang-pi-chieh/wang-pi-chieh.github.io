@@ -36,3 +36,10 @@ Use case: illustration-story. Create one polished website mascot asset: a cute l
 ## Footer pages
 
 `privacy.html` describes local theme storage, hosting, fonts and external links. `terms.html` describes content sharing and attribution. Edit them through `build_pages.py` if site behavior changes.
+## Shell Script 筆記與目錄
+
+- 筆記原始 Markdown：`notes/shell-script.md`，保留 HackMD 原文連結。
+- 原文圖片：`assets/notes/`，固定在本站，避免外部圖片轉址失效。
+- 重新匯入：執行 `python import_shell_note.py`，需要作者端 Python 套件 `markdown-it-py`；接著執行 `python build_pages.py`。訪客與 GitHub Pages 不需要 Python 套件。
+- 所有 Note 閱讀頁會根據 h2/h3/h4 自動產生左側目錄；手機使用可展開目錄。本文使用固定索引 `article.html?type=notes&id=2`，請保留既有陣列項目順序。
+- 新筆記以 `featured: true` 排在列表前面。HackMD 後續修改不會自動同步，需要重新匯入。

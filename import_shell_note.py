@@ -25,6 +25,7 @@ for name in images.values():
     width, height = struct.unpack('>II', data[16:24])
     html = html.replace(f'src="assets/notes/{name}.png"', f'src="assets/notes/{name}.png" width="{width}" height="{height}"')
 entry = {
+    'id': 2,
     'title': 'Shell Script',
     'topic': 'Linux / Shell',
     'date': '自學筆記',

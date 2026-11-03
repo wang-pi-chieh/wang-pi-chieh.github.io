@@ -1,4 +1,4 @@
-# 王碧婕的數位花園
+# PiChieh 個人網站
 
 原生 HTML / CSS / JavaScript，多頁靜態網站，可直接部署至 GitHub Pages。
 
